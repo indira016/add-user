@@ -8,6 +8,7 @@ const AddUser = (props) => {
     const [username, setUserName] = useState('')
     const [age, setUserAge] = useState('')
     const [error, setError] = useState(null)
+  
 
     const usernameChangeHandler = (e) => {
         setUserName(e.target.value)
@@ -35,27 +36,25 @@ const AddUser = (props) => {
         props.onAdd(username, age)
 
 
-        setUserName('')
-        setUserAge('')
+        setUserName("")
+        setUserAge("")
     }
     const closeModulError = () => {
         setError(null)
     }
-
     return (
-        <div>
+        <React.Fragment>
             {error && <ErrorModul title={error.title} messege={error.messege} onClick={closeModulError} />}
             <Card className={classes.input}>
                 <form onSubmit={sumbitHandler}>
                     <label htmlFor='name '>User name</label>
                     <input value={username} id='name' type="text" onChange={usernameChangeHandler} />
-                    <label value={age} htmlFor="age">Age</label>
-                    <input id='age' type="number" onChange={ageChangeHandler} />
+                    <label htmlFor="age">Age</label>
+                    <input value={age} id='age' type="number" onChange={ageChangeHandler} />
                     <Button type='submit'>Add user</Button>
                 </form>
             </Card>
-        </div>
+        </React.Fragment>
     )
 }
-
 export default AddUser
